@@ -1,53 +1,59 @@
 import flet as ft
 
 def main(page: ft.Page):
-    # 1. Configurações da página simulando um celular
-    page.window_width = 360
-    page.window_height = 640
-    page.bgcolor = "#F4F1EA" # Cor de fundo bege
+    page.window_width, page.window_height = 360, 640
+    page.bgcolor = "#0B0B12" # Fundo escuro real
     page.padding = 20
-    page.scroll = "auto" # Adiciona rolagem na tela inteira automaticamente
+    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
-    # 2. Elementos da interface
-    titulo = ft.Text("Encontrar profissional", size=24, weight=ft.FontWeight.BOLD, color="#185650")
-    
-    busca = ft.TextField(hint_text="Eletricista", bgcolor="white", border_radius=10)
+    # 1. Avatar
+    avatar = ft.Image(src="kcarrasquinho.png", width=120, height=120)
 
-    # Botões de filtro lado a lado (Row)
-    filtros = ft.Row([
-        ft.ElevatedButton("Recife", bgcolor="#185650", color="white"),
-        ft.OutlinedButton("Hoje"),
-        ft.OutlinedButton("Preço"),
-    ])
-
-    # 3. Função para criar um card (Componentização)
-    def criar_card(iniciais, nome, info, status, cor_icone):
-        return ft.Container(
-            bgcolor="white",
-            padding=15,
-            border_radius=10,
-            content=ft.Row([
-                # Ícone redondo com as iniciais
-                ft.CircleAvatar(content=ft.Text(iniciais, color="black"), bgcolor=cor_icone),
-                
-                # Textos empilhados (Column)
-                ft.Column([
-                    ft.Text(nome, weight=ft.FontWeight.BOLD, color="black"),
-                    ft.Text(info, size=12, color=ft.colors.GREY),
-                    ft.Text(status, size=12, color="#537052", weight=ft.FontWeight.BOLD),
-                ], spacing=2) # Espaçamento entre os textos
-            ])
-        )
-
-    # 4. Adicionando tudo na tela (na ordem que deve aparecer)
-    page.add(
-        titulo,
-        busca,
-        filtros,
-        ft.Divider(height=10, color="transparent"), # Apenas um espaço em branco
-        criar_card("JS", "João Silva", "4,8 · 127 serviços · 3km", "Disponível agora", ft.colors.LIGHT_GREEN_300),
-        criar_card("CA", "Carlos Alves", "4,9 · 84 serviços · 5km", "Disponível amanhã", ft.colors.LIGHT_GREEN_300)
+    # Tag de Nome
+    tag_nome = ft.Container(
+        content=ft.Text("KCARRASQUINHO", size=10, weight="bold", color="#A020F0"),
+        bgcolor="#1A1A2E", padding=ft.padding.symmetric(horizontal=15, vertical=5), border_radius=15
     )
 
-# 5. O SEGREDO DO CODESPACES: Iniciar como Web Browser
-ft.app(target=main, view=ft.AppView.WEB_BROWSER)
+    # 2. Textos com múltiplas cores (TextSpans)
+    titulo = ft.Text(
+        spans=[
+            ft.TextSpan("Abra a mente, o código\nvem para o ", ft.TextStyle(size=24, weight="bold", color="white")),
+            ft.TextSpan("mundo\nreal", ft.TextStyle(size=24, weight="bold", color="#A020F0")),
+            ft.TextSpan(".", ft.TextStyle(size=24, weight="bold", color="white")),
+        ],
+        text_align=ft.TextAlign.CENTER
+    )
+
+    subtexto = ft.Text("Toque na caixa abaixo para liberar os módulos e\niniciar nossa dinâmica de programação prática.", size=12, color="#6A82B8", text_align=ft.TextAlign.CENTER)
+
+    # 3. Caixa Interativa (GestureDetector)
+    def clicar_na_caixa(e):
+        page.snack_bar = ft.SnackBar(ft.Text("Módulos da Caixa dos Devs liberados com sucesso! 🚀"), bgcolor="#A020F0")
+        page.snack_bar.open = True
+        page.update()
+
+    caixa_interativa = ft.GestureDetector(
+        on_tap=clicar_na_caixa,
+        content=ft.Image(src="caixa.png", width=200)
+    )
+
+    # 4. Botão final
+    btn_interagir = ft.Container(
+        content=ft.Row([
+            ft.Icon(ft.icons.CIRCLE, color="#A020F0", size=10),
+            ft.Text("CLIQUE PARA INTERAGIR", size=10, color="grey", weight="bold")
+        ], alignment=ft.MainAxisAlignment.CENTER),
+        bgcolor="#151520", padding=10, border_radius=20, width=200
+    )
+
+    # Montando a tela
+    page.add(
+        avatar, tag_nome, ft.Container(height=10), # Container vazio serve como espaço
+        titulo, subtexto, ft.Container(height=20),
+        caixa_interativa,
+        ft.Container(expand=True), # Empurra o botão de interagir lá para baixo
+        btn_interagir
+    )
+
+ft.run(main, view=ft.AppView.WEB_BROWSER, assets_dir="assets")
