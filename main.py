@@ -9,10 +9,12 @@ def main(page: ft.Page):
     # 1. Avatar
     avatar = ft.Image(src="kcarrasquinho.png", width=120, height=120)
 
-    # Tag de Nome
+    # Tag de Nome (CORRIGIDO: padding simplificado)
     tag_nome = ft.Container(
         content=ft.Text("KCARRASQUINHO", size=10, weight="bold", color="#A020F0"),
-        bgcolor="#1A1A2E", padding=ft.padding.symmetric(horizontal=15, vertical=5), border_radius=15
+        bgcolor="#1A1A2E", 
+        padding=10, 
+        border_radius=15
     )
 
     # 2. Textos com múltiplas cores (TextSpans)
@@ -38,10 +40,10 @@ def main(page: ft.Page):
         content=ft.Image(src="caixa.png", width=200)
     )
 
-    # 4. Botão final
+    # 4. Botão final (CORRIGIDO: Ícone de círculo substituído por um Container redondo)
     btn_interagir = ft.Container(
         content=ft.Row([
-            ft.Icon(ft.icons.CIRCLE, color="#A020F0", size=10),
+            ft.Container(width=10, height=10, border_radius=5, bgcolor="#A020F0"),
             ft.Text("CLIQUE PARA INTERAGIR", size=10, color="grey", weight="bold")
         ], alignment=ft.MainAxisAlignment.CENTER),
         bgcolor="#151520", padding=10, border_radius=20, width=200
