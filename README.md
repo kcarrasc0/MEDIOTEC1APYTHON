@@ -54,8 +54,8 @@ Para que você não se perca no código, aqui está uma tabela com os principais
 | `ft.Container(...)` | **Frame ou Retângulo**. Cria uma "caixa" onde você pode adicionar cor, borda arredondada e margens. |
 | `alignment=ft.MainAxisAlignment.CENTER` | Centraliza os elementos no **eixo principal** (ex: no meio exato da linha ou coluna). |
 | `horizontal_alignment=ft.CrossAxisAlignment.CENTER` | Alinha os elementos ao centro no **eixo oposto** (ex: centraliza os textos verticalmente dentro de um Container). |
-| `padding=...` | **Margem Interna**. Espaço entre a borda da caixa e o conteúdo que está dentro dela. |
-| `bgcolor="..."` | **Fill / Cor de Fundo**. Define a cor do elemento (aceita cores como `"white"` ou códigos HEX como `"#185650"`). |
+| `padding=10` | **Margem Interna**. Espaço entre a borda da caixa e o conteúdo. Na versão atual, usamos apenas um número inteiro para aplicar a mesma margem em todos os lados. |
+| `bgcolor="..."` | **Fill / Cor de Fundo**. Pode usar código HEX (`"#185650"`) ou as cores nativas do Flet sempre com C maiúsculo (ex: `ft.Colors.WHITE`). |
 | `border_radius=...` | **Corner Radius**. Deixa as bordas da caixa ou botão arredondadas. |
 | `expand=True` | **Fill Container**. Diz para o elemento crescer e ocupar todo o espaço vazio disponível na tela. |
 | `weight=ft.FontWeight.BOLD` | Deixa a fonte do texto em **Negrito**. |
@@ -66,6 +66,7 @@ Para que você não se perca no código, aqui está uma tabela com os principais
 ## Dicas de Ouro
 
 * **Sopa de letrinhas:** Fique sempre atento ao abrir e fechar de parênteses `()` e colchetes `[]` no Flet. Uma vírgula esquecida pode gerar um erro na tela toda!
+* **Atenção à versão:** O Flet é uma biblioteca super moderna e atualizada. Por isso, a função principal para rodar o app no final do código é `ft.run(main)` (tutoriais mais antigos na internet usavam `ft.app()`, então não se confunda!).
 * **Parando a execução:** Para testar uma nova versão do seu código, você precisa parar o programa atual. Vá no terminal, clique nele e pressione `Ctrl + C` para encerrar o servidor. Depois, digite `python main.py` novamente.
 * **Tudo é uma caixa:** Se não souber como posicionar um elemento, coloque-o dentro de um `ft.Container()` e mude a cor de fundo dele provisoriamente para vermelho. Assim, você "enxerga" o espaço que ele está ocupando.
 
