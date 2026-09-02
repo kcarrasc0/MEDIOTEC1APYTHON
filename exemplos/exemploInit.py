@@ -1,3 +1,7 @@
+# trabalhar init, self, def 
+
+
+
 class Aluno:
     def __init__(self, nome, idade, curso):
         self.nome = nome
