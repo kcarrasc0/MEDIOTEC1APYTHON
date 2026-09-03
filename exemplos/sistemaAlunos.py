@@ -110,7 +110,7 @@ while True:
 
     if opcao == "1":
 
-
+        # ----------------------------------
         # MÓDULO 5 — FOR E RANGE
 
         print("\n--- ALUNOS CADASTRADOS ---")
